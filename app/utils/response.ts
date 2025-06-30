@@ -9,7 +9,7 @@ export const generateIncentiveCode = (): string => {
 }
 
 
-export const sendJsonResponse = (jsonData: Record<any, any>): Response => {
+export const sendJsonResponse = (jsonData: object): Response => {
   return new Response(JSON.stringify(jsonData), {
     status: 200,
     headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }

@@ -52,6 +52,7 @@ export async function POST(request: Request) {
   try {
     id = await generateValidIncentiveCode();
   } catch (error) {
+    console.log(error);
     return sendErrorResponse('id generation error');
   }
 
@@ -64,6 +65,7 @@ export async function POST(request: Request) {
     await insertIncentiveCode(incentiveCode);
     return sendJsonResponse({ id });
   } catch (error) {
+    console.log(error);
     return sendErrorResponse('database error');
   }
 }
