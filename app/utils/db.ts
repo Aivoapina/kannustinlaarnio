@@ -35,3 +35,9 @@ export const checkIfIncentiveCodeExists = async (id: string): Promise<boolean> =
   const res = await client.query(query, values);
   return res.rowCount !== 0;
 }
+
+export const getDonations = async () => {
+  const query = 'SELECT d.id, d.donator, d.msg, d.amount, ic.inc_value, i.game, i.title FROM Donations as d LEFT JOIN IncentiveCodes as ic ON d.incentive_code = ic.id LEFT JOIN Incentives as i ON ic.incentive_id = i.id';
+  const res = await client.query(query);
+  return res.rows;
+}
