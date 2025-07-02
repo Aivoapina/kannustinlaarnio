@@ -22,3 +22,10 @@ export const sendErrorResponse = (resText: string): Response => {
     headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
   });
 };
+
+export const sendNotAuthorizedResponse = (resText: string): Response => {
+  return new Response(resText, {
+    status: 401,
+    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+  });
+}

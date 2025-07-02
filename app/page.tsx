@@ -47,7 +47,7 @@ export default async function Home() {
           <h3 className="text-3xl mb-2">{inc.game}: {inc.title}</h3>
           <p className="mb-4">{inc.info}</p>
 
-          <p className="mb-4">{calculateIncentiveStatus(inc)}</p>
+          <p className="mb-4" style={{ color: '#00a5ff' }} >{calculateIncentiveStatus(inc)}</p>
 
           {inc.incentiveType === 'fixedChoice' && inc.incentiveValues && (
             <FixedSelector id={inc.id} incentiveValues={inc.incentiveValues} />

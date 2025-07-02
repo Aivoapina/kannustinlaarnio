@@ -41,3 +41,16 @@ export const getDonations = async () => {
   const res = await client.query(query);
   return res.rows;
 }
+
+export const getAdminIncentives = async () => {
+  const query = 'SELECT i.id, i.title, i.game, i.endtime from Incentives as i;';
+  const res = await client.query(query);
+  return res.rows;
+}
+
+export const closeIncentive = async (id: string) => {
+  const now = new Date().toISOString();
+  const query = 'UPDATE Incentives SET endtime = $1 WHERE id = $2';
+  const values = [ now, id ];
+  await client.query(query, values);
+}

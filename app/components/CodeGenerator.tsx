@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react';
+import { BASE_URL } from '../utils/constants';
 
 type Props = {
   id: number
@@ -17,7 +18,7 @@ export default function CodeGenerator({
   const generateCode = async () => {
     setLoading(true);
     const body = JSON.stringify({ id, value: selectedValue });
-    const res = await fetch('http://localhost:3000/api/incentives', { method: 'POST', body });
+    const res = await fetch(`/api/incentives`, { method: 'POST', body });
     const codeRes = await res.json();
     setCode(codeRes.id);
     setLoading(false);
