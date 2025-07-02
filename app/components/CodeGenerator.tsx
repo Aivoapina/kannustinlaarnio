@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react';
-import { BASE_URL } from '../utils/constants';
 
 type Props = {
   id: number
