@@ -37,7 +37,7 @@ export default function CodeGenerator({
       :
         <>
           <div className="inline-block m-auto p-1 text-lg" style={{ fontFamily: 'monospace', backgroundColor: '#2c7cb2' }}>{'[' +  code + ']'}</div>
-          <div><a className="underline" href="https://finnruns.fi/lahjoita">Siirry tästä lahjoittamaan</a> ja lisää tämä koodi lahjoituksen viestikenttään.</div>
+          <div><a className="underline" href="https://finnruns.fi/lahjoita" target="_blank">Siirry tästä lahjoittamaan</a> ja lisää tämä koodi hakasulkeineen lahjoituksen viestikenttään.</div>
         </>
       }
     </div>

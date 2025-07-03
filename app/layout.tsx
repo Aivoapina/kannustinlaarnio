@@ -34,9 +34,9 @@ export default function RootLayout({
 
           </p>
           <p className="mb-5 border-b pb-5">
-            Valitse kannuste ja tämän jälkeen saat mahdollisuuden generoida koodin. Lisää saamasi koodi lahjoituksesi viestikenttään. Viestikenttä aukeaa lahjoituksen maksamisen jälkeen.
+            Valitse kannuste ja tämän jälkeen saat mahdollisuuden generoida koodin. Lisää saamasi koodi lahjoituksesi viestikenttään. 
             <br />
-            Huom. Lahjoittajan etunimi on se nimi, jonka luemme lähetyksessä. Tähän voit myös laittaa esim. nimimerkkisi.
+            <span className="font-bold">Huom. Viestikenttä aukeaa lahjoituksen maksamisen jälkeen. </span>Lahjoittajan etunimi on se nimi, jonka luemme lähetyksessä. Tähän voit myös laittaa esim. nimimerkkisi.
           </p>
           {children}
         </div>
