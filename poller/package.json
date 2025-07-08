@@ -1,0 +1,10 @@
+{
+  "type": "module",
+  "dependencies": {
+    "dotenv": "17.1.0",
+    "pg": "8.16.3"
+  },
+  "scripts": {
+    "start": "node poller.js"
+  }
+}
