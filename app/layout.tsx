@@ -28,7 +28,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="max-w-3xl m-auto mt-20 px-4">
-          <h2 className="text-4xl mb-5">FINNRUNS Summer 2025 kannusteet</h2>
+          <h2 className="text-4xl mb-5">FINNRUNS Winter 2026 kannusteet</h2>
           <p className="mb-5">
             Täällä voit osallistua lähetyksemme kulkuun generoimalla koodin, jonka liität osaksi lahjoitustasi. Valittavat kannusteet löydät alta.
 

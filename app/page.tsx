@@ -37,7 +37,7 @@ const calculateClosed = (endtime: string) => {
 }
 
 export default async function Home() {
-  const data = await fetch('https://lahjoita.finnruns.fi/api/incentives', { method: 'GET' });
+  const data = await fetch('http://localhost:3000/api/incentives', { method: 'GET' });
   const incentives: IncentivesResponse[] = await data.json();
 
   return (
