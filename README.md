@@ -8,10 +8,11 @@ You need a PostgreSQL server and a database setuped. Then create tables listed i
 ```
 psql -U username -d database -a -f db.sql
 ```
-
 Create a `.env` file from `.env-example` and fill in the values.
 
 You can use poller to insert donations from a different API.
+
+Fixed choices can be created providing `fixedchoices.csv` with incentiveId and choices as comma separated list.
 
 Run the development server:
 
