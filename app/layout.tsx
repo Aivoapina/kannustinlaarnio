@@ -22,13 +22,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const title = process.env.EVENT_NAME
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="max-w-3xl m-auto mt-20 px-4">
-          <h2 className="text-4xl mb-5">FINNRUNS Winter 2026 kannusteet</h2>
+          <h2 className="text-4xl mb-5">{title} kannusteet</h2>
           <p className="mb-5">
             Täällä voit osallistua lähetyksemme kulkuun generoimalla koodin, jonka liität osaksi lahjoitustasi. Valittavat kannusteet löydät alta.
 
