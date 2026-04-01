@@ -18,7 +18,8 @@ export type IncentivesResponse = {
   info: string,
   incentiveType: 'freeChoice' | 'fixedChoice' | 'milestone',
   endtime: string,
-  incentiveValues?: IncentiveValues[]
+  incentiveValues?: IncentiveValues[],
+  incentivePattern?: string,
   milestone?: Milestone
 }
 

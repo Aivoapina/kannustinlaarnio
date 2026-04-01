@@ -5,11 +5,13 @@ import { useState } from 'react';
 type Props = {
   id: number
   selectedValue?: string
+  invalidValue?: boolean
 };
 
 export default function CodeGenerator({
   id,
-  selectedValue
+  selectedValue,
+  invalidValue
 }: Props) {
   const [ code, setCode ] = useState(undefined);
   const [ loading, setLoading ] = useState(false);
@@ -29,7 +31,7 @@ export default function CodeGenerator({
         <button 
           className='block m-auto font-bold uppercase border-1 rounded-sm p-2'
           style={{ backgroundColor: '#2c7cb2' }}
-          disabled={loading}
+          disabled={loading || invalidValue}
           onClick={generateCode}
         >
           Generoi kannustinkoodi

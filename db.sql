@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS Incentives (
   title text,
   info text,
   incentive_type text,
+  incentive_pattern text,
   endtime text,
   milestone_amount real
 );

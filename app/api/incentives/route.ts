@@ -9,7 +9,7 @@ export async function GET() {
 
   incentives.forEach(inc => {
     const i = filteredInc.findIndex(fi => fi.id === inc.id);
-    const { id, game, title, info, endtime, incentive_type: incentiveType, milestone_amount: milestoneAmount } = inc;
+    const { id, game, title, info, endtime, incentive_type: incentiveType, incentive_pattern: incentivePattern, milestone_amount: milestoneAmount } = inc;
     if (i < 0) {
       if (incentiveType === 'milestone') {
         filteredInc.push({
@@ -30,6 +30,7 @@ export async function GET() {
           info,
           endtime,
           incentiveType,
+          incentivePattern,
           incentiveValues,
         });
       }

@@ -4,6 +4,7 @@ import { IncentivesResponse } from "./types/types";
 import Progressbar from "./components/Progressbar";
 import FixedSelector from "./components/FixedSelector";
 import React from "react";
+import FreeSelector from "./components/FreeSelector";
 
 const calculateIncentiveStatus = (inc: IncentivesResponse) => {
   // const now = new Date(2025, 6, 3, 15, 0, 0).getTime();
@@ -51,6 +52,9 @@ export default async function Home() {
 
           {inc.incentiveType === 'fixedChoice' && inc.incentiveValues && (
             <FixedSelector id={inc.id} incentiveValues={inc.incentiveValues} />
+          )}
+          {inc.incentiveType === 'freeChoice' && (
+            <FreeSelector id={inc.id} incentivePattern={inc.incentivePattern} incentiveValues={inc.incentiveValues ?? []} />
           )}
           {inc.incentiveType === 'milestone' && inc.milestone && (
             <Progressbar id={inc.id} amount={inc.milestone.raised} goal={inc.milestone.goal} closed={calculateClosed(inc.endtime)} />
