@@ -2,8 +2,9 @@ import { IncentiveCodeRequest, IncentivesResponse } from "@/app/types/types";
 import { checkIfIncentiveCodeExists, getAllIncentives, insertIncentiveCode } from "@/app/utils/db";
 import { generateIncentiveCode, sendErrorResponse, sendJsonResponse } from "@/app/utils/response";
 
-export async function GET() {
+export async function GET(req: Request) {
   const incentives = await getAllIncentives();
+  const searchParams = new URL(req.url).searchParams;
   
   const filteredInc: IncentivesResponse[] = [];
 
@@ -41,7 +42,11 @@ export async function GET() {
 
   const sortedRes = filteredInc.sort((a, b) => {
     return new Date(a.endtime).getTime() - new Date(b.endtime).getTime();
-  })
+  });
+  
+  if (searchParams.get('getActive') === 'true') {
+    return sendJsonResponse(sortedRes.filter(inc => new Date(inc.endtime).getTime() > Date.now()));
+  }
 
   return sendJsonResponse(sortedRes);
 }
