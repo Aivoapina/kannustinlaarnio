@@ -51,10 +51,10 @@ export default async function Home() {
           <p className="mb-4" style={{ color: '#00a5ff' }} >{calculateIncentiveStatus(inc)}</p>
 
           {inc.incentiveType === 'fixedChoice' && inc.incentiveValues && (
-            <FixedSelector id={inc.id} incentiveValues={inc.incentiveValues} />
+            <FixedSelector id={inc.id} incentiveValues={inc.incentiveValues} closed={calculateClosed(inc.endtime)} />
           )}
           {inc.incentiveType === 'freeChoice' && (
-            <FreeSelector id={inc.id} incentivePattern={inc.incentivePattern} incentiveValues={inc.incentiveValues ?? []} />
+            <FreeSelector id={inc.id} incentivePattern={inc.incentivePattern} incentiveValues={inc.incentiveValues ?? []} closed={calculateClosed(inc.endtime)} />
           )}
           {inc.incentiveType === 'milestone' && inc.milestone && (
             <Progressbar id={inc.id} amount={inc.milestone.raised} goal={inc.milestone.goal} closed={calculateClosed(inc.endtime)} />

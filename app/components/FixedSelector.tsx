@@ -6,7 +6,8 @@ import { IncentiveValues } from '../types/types';
 
 type Props = {
   id: number,
-  incentiveValues: IncentiveValues[]
+  incentiveValues: IncentiveValues[],
+  closed: boolean
 }
 
 export default function FixedSelector({
@@ -32,6 +33,7 @@ export default function FixedSelector({
             id={inc.name}
             type="radio"
             value={inc.name}
+            disabled={closed}
             name={id.toString()}
             onChange={(event) => { setSelected(event.target.value); }}
           />
