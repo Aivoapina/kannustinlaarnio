@@ -13,24 +13,26 @@ type Props = {
 export default function FixedSelector({
   id,
   incentiveValues,
+  closed,
 }: Props) {
 
   const [ selected, setSelected ] = useState<string | undefined>(undefined);
 
   const total = incentiveValues.reduce((a, b) => a + b.amount, 0);
 
+
   return (
     <div>
       {incentiveValues.map(inc => (
         <label
-          key={inc.name}
-          htmlFor={inc.name}
+          key={`${id}-${inc.name}`}
+          htmlFor={`${id}-${inc.name}`}
           style={{ backgroundColor: '#737373', opacity: 0.9 }}
-          className={`flex flex-row w-full h-8 rounded-xs relative mb-1 ${inc.name === selected && 'border-1'}`}
+          className={`flex flex-row w-full h-8 rounded-xs relative mb-1 ${inc.name === selected ? 'border-1' : ''}`}
         > 
           <input 
             className="mr-2 appearance-none"
-            id={inc.name}
+            id={`${id}-${inc.name}`}
             type="radio"
             value={inc.name}
             disabled={closed}

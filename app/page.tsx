@@ -46,7 +46,7 @@ export default async function Home() {
       {incentives.map((inc) => (
         <div className="mb-5 pb-5 border-b" key={inc.id}>
           <h3 className="text-3xl mb-2">{inc.game}: {inc.title}</h3>
-          <p className="mb-4">{inc.info}</p>
+          <p className="mb-4 [&>a]:text-blue-700" dangerouslySetInnerHTML={{ __html: inc.info }}></p>
 
           <p className="mb-4" style={{ color: '#00a5ff' }} >{calculateIncentiveStatus(inc)}</p>
 
