@@ -2,24 +2,20 @@
 
 import { useState } from 'react';
 import CodeGenerator from './CodeGenerator';
-import { IncentiveValues } from '../types/types';
+import { FixedChoice } from '../types/types';
+import { calculateClosed } from '../utils/time';
 
 type Props = {
-  id: number,
-  incentiveValues: IncentiveValues[],
-  closed: boolean
+  incentive: FixedChoice
 }
 
 export default function FixedSelector({
-  id,
-  incentiveValues,
-  closed,
+  incentive
 }: Props) {
-
+  const { id, incentiveValues, endtime } = incentive;
   const [ selected, setSelected ] = useState<string | undefined>(undefined);
 
   const total = incentiveValues.reduce((a, b) => a + b.amount, 0);
-
 
   return (
     <div>
@@ -35,7 +31,7 @@ export default function FixedSelector({
             id={`${id}-${inc.name}`}
             type="radio"
             value={inc.name}
-            disabled={closed}
+            disabled={calculateClosed(endtime)}
             name={id.toString()}
             onChange={(event) => { setSelected(event.target.value); }}
           />

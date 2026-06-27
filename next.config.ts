@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ['94.237.113.32', 'lahjoita.finnruns.fi'],
   async headers() {
     return [
       {

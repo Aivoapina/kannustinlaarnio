@@ -1,4 +1,4 @@
-import { IncentiveCodeRequest, IncentivesResponse } from "@/app/types/types";
+import { FreeChoice, Incentive, IncentiveCodeRequest, isFixedChoice, isFreeChoice, Milestone } from "@/app/types/types";
 import { checkIfIncentiveCodeExists, getAllIncentives, insertIncentiveCode } from "@/app/utils/db";
 import { generateIncentiveCode, sendErrorResponse, sendJsonResponse } from "@/app/utils/response";
 
@@ -6,36 +6,36 @@ export async function GET(req: Request) {
   const incentives = await getAllIncentives();
   const searchParams = new URL(req.url).searchParams;
   
-  const filteredInc: IncentivesResponse[] = [];
+  const filteredInc: Incentive[] = [];
 
   incentives.forEach(inc => {
     const i = filteredInc.findIndex(fi => fi.id === inc.id);
-    const { id, game, title, info, endtime, incentive_type: incentiveType, incentive_pattern: incentivePattern, milestone_amount: milestoneAmount } = inc;
+    const { id, game, title, info, endtime, incentive_type: type, incentive_pattern: incentivePattern, milestone_amount: milestoneAmount } = inc;
     if (i < 0) {
-      if (incentiveType === 'milestone') {
+      if (type === 'milestone') {
         filteredInc.push({
           id,
           game,
           title,
           info,
           endtime,
-          incentiveType,
+          type,
           milestone: { raised: inc.sum ?? 0, goal: milestoneAmount }
-        });
+        } as Milestone);
       } else {
-        const incentiveValues = inc.inc_value ? [{ name: inc.inc_value, amount: inc.sum }] : undefined;
+        const incentiveValues = inc.inc_value ? [{ name: inc.inc_value, amount: inc.sum }] : [];
         filteredInc.push({
           id,
           game,
           title,
           info,
           endtime,
-          incentiveType,
+          type,
           incentivePattern,
           incentiveValues,
-        });
+        } as FreeChoice);
       }
-    } else {
+    } else if (isFixedChoice(filteredInc[i]) || isFreeChoice(filteredInc[i])) {
       filteredInc[i].incentiveValues?.push({ name: inc.inc_value, amount: inc.sum })
     }    
   });

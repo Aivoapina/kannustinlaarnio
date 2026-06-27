@@ -1,5 +1,3 @@
-
-
 export type IncentiveCodeRequest = {
   id: number;
   value?: string
@@ -11,22 +9,39 @@ export type IncentiveCode = {
   value?: string,
 }
 
-export type IncentivesResponse = {
+export interface Incentive {
+  type: 'freeChoice' | 'fixedChoice' | 'milestone',
   id: number,
   game: string,
   title: string,
   info: string,
-  incentiveType: 'freeChoice' | 'fixedChoice' | 'milestone',
   endtime: string,
-  incentiveValues?: IncentiveValues[],
-  incentivePattern?: string,
-  milestone?: Milestone
 }
 
-export type Milestone = {
+export interface FreeChoice extends Incentive {
+  type: 'freeChoice',
+  incentiveValues: IncentiveValues[],
+  incentivePattern: string,
+}
+
+export interface FixedChoice extends Incentive {
+  type: 'fixedChoice',
+  incentiveValues: IncentiveValues[],
+}
+
+export interface Milestone extends Incentive {
+  type: 'milestone'
+  milestone: MilestoneData
+}
+
+export type MilestoneData = {
   raised: number
   goal: number
 }
+
+export const isFreeChoice = (incentive: Incentive): incentive is FreeChoice => incentive.type === 'freeChoice'
+export const isFixedChoice = (incentive: Incentive): incentive is FixedChoice => incentive.type === 'fixedChoice'
+export const isMilestone = (incentive: Incentive): incentive is Milestone => incentive.type === 'milestone'
 
 export type IncentiveValues = {
   name: string,

@@ -2,27 +2,24 @@
 
 import { useState } from 'react';
 import CodeGenerator from './CodeGenerator';
-import { IncentiveValues } from '../types/types';
+import { FreeChoice } from '../types/types';
+import { calculateClosed } from '../utils/time';
 
 type Props = {
-  id: number,
-  incentiveValues: IncentiveValues[],
-  incentivePattern?: string,
-  closed: boolean
+  incentive: FreeChoice
 }
 
 export default function FreeSelector({
-  id,
-  incentiveValues,
-  incentivePattern,
-  closed
+  incentive
 }: Props) {
+  const { id, incentiveValues, incentivePattern, endtime } = incentive;
 
   const [ selected, setSelected ] = useState<string | undefined>(undefined);
   const [ freeField, setFreeField ] = useState<string | undefined>(undefined);
   const [ invalidInput, setInvalidInput ] = useState<boolean>(false);
 
   const total = incentiveValues.reduce((a, b) => a + b.amount, 0);
+  const closed = calculateClosed(endtime)
 
   return (
     <div>
