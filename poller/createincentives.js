@@ -42,16 +42,25 @@ const insertFixedDonation = async (code) => {
   await client.query(query, values);
 }
 
+const insertIncentive = async (values) => {
+  const query = 'INSERT INTO Incentives(game, title, info, incentive_type, endtime, incentive_pattern, milestone_amount ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id';
+  const result = await client.query(query, values);
+  return result.rows[0].id;
+}
+
 async function main() {
-  const data = await readFile('./resources/fixedchoices.csv', { encoding: 'utf-8' });
+  const data = await readFile('./resources/incentives.csv', { encoding: 'utf-8' });
   const lines = data.split('\n');
   lines.forEach(async line => {
-    const [id, values] = line.split(';');
-    const valuesList = values.split(',');
-    valuesList.forEach(async (fixedValue) => {
-      const code = await insertIC(id, fixedValue);
-      await insertFixedDonation(code);
-    })
+    const [game, title, info, incentive_type, endtime, fixed_choices, incentive_pattern, milestone_amount] = line.split(';');
+    const id = await insertIncentive([game, title, info, incentive_type, endtime, incentive_pattern || null, milestone_amount || null]);
+    if (incentive_type === 'fixedChoice') {
+      const fixedChoicesList = fixed_choices.split(',');
+      fixedChoicesList.forEach(async (fixedValue) => {
+        const code = await insertIC(id, fixedValue);
+        await insertFixedDonation(code);
+      })
+    }
   })
 }
 
