@@ -15,6 +15,7 @@ export default function CodeGenerator({
 }: Props) {
   const [ code, setCode ] = useState(undefined);
   const [ loading, setLoading ] = useState(false);
+  const [ showCopiedCode, setShowCopiedCode ] = useState(false);
 
   const generateCode = async () => {
     setLoading(true);
@@ -28,6 +29,8 @@ export default function CodeGenerator({
 
   const copyToClipboard: MouseEventHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     navigator.clipboard.writeText(event.currentTarget.innerHTML);
+    setShowCopiedCode(true);
+    setTimeout(() => { setShowCopiedCode(false) }, 3000)
   }
 
   return (
@@ -53,7 +56,18 @@ export default function CodeGenerator({
           >
               {'[' +  code + ']'}
           </div>
-          <div><a className="underline" href="https://finnruns.fi/lahjoita" target="_blank">Siirry tästä lahjoittamaan</a> ja lisää tämä koodi hakasulkeineen lahjoituksen viestikenttään.</div>
+          <div>
+            <a className="underline" href="https://finnruns.fi/lahjoita" target="_blank">Siirry tästä lahjoittamaan</a>
+            {' '}ja lisää tämä koodi hakasulkeineen lahjoituksen viestikenttään.
+          </div>
+          <div
+            className="fixed bottom-4 left-0 inset-x-0 mx-auto transition-opacity duration-1000 z-67"
+            style={{ opacity: showCopiedCode ? 0.9 : 0 }}
+          > 
+            <span className="px-4 py-2 rounded-xs" style={{ backgroundColor: '#ededed', color: '#242424'}}>
+              Koodi kopioitu leikepöydälle
+            </span>
+          </div>
         </>
       }
     </div>

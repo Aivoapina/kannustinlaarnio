@@ -23,6 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const title = process.env.EVENT_NAME
+  const ytSrc = process.env.YOUTUBE_EMBED_SRC
   return (
     <html lang="en">
       <body
@@ -37,11 +38,22 @@ export default function RootLayout({
           <p className="mb-5 ">
             Valitse kannuste ja tämän jälkeen saat mahdollisuuden generoida koodin. Lisää saamasi koodi lahjoituksesi viestikenttään. 
             <br />
-            <span className="font-bold">Huom. Viestikenttä aukeaa lahjoituksen maksamisen jälkeen. </span>Lahjoittajan etunimi on se nimi, jonka luemme lähetyksessä. Tähän voit myös laittaa esim. nimimerkkisi.
+            <span className="font-bold">Huom. Viestikenttä aukeaa lahjoituksen maksamisen jälkeen. </span>Lahjoittajan etunimi on se nimi, jonka luemme lähetyksessä. Tähän voit myös laittaa esim. nimimerkkisi. Voit katsoa myös ohjevideon alapuolelta.
           </p>
-          <p className="mb-5 border-b pb-5">
+          <p className="mb-5 pb-5">
             <a className="font-bold underline text-lg" href="https://finnruns.fi/lahjoita" target="_blank">Voit siirtyä lahjoittamaan tästä.</a>
           </p>
+          <div className="relative border-b pb-5 mb-5 aspect-video">
+            <iframe 
+              width="100%"
+              height="100%"
+              src={ytSrc}
+              title="Lahjoitusohje"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
           {children}
         </div>
       </body>

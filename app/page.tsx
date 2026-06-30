@@ -33,7 +33,8 @@ const calculateIncentiveStatus = (inc: Incentive) => {
 
 const renderIncentive = (inc: Incentive) => (
   <div className="mb-5 pb-5 border-b" key={inc.id}>
-    <h3 className="text-3xl mb-2">{inc.game}: {inc.title}</h3>
+    <h3 className="text-3xl mb-2 font-bold">{inc.game}</h3>
+    <h3 className="text-2xl mb-2">{inc.title}</h3>
     <p className="mb-4 [&>a]:text-blue-700" dangerouslySetInnerHTML={{ __html: inc.info }}></p>
 
     <p className="mb-4" style={{ color: '#00a5ff' }} >{calculateIncentiveStatus(inc)}</p>
