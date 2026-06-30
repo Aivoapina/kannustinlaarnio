@@ -17,6 +17,11 @@ export default function CodeGenerator({
   const [ loading, setLoading ] = useState(false);
   const [ showCopiedCode, setShowCopiedCode ] = useState(false);
 
+  const showCopyText = () => {
+    setShowCopiedCode(true);
+    setTimeout(() => { setShowCopiedCode(false) }, 3000);
+  }
+
   const generateCode = async () => {
     setLoading(true);
     const body = JSON.stringify({ id, value: selectedValue });
@@ -24,13 +29,13 @@ export default function CodeGenerator({
     const codeRes = await res.json();
     setCode(codeRes.id);
     navigator.clipboard.writeText(`[${codeRes.id}]`);
+    showCopyText();
     setLoading(false);
   }
 
   const copyToClipboard: MouseEventHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     navigator.clipboard.writeText(event.currentTarget.innerHTML);
-    setShowCopiedCode(true);
-    setTimeout(() => { setShowCopiedCode(false) }, 3000)
+    showCopyText();
   }
 
   return (

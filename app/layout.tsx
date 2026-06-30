@@ -35,7 +35,7 @@ export default function RootLayout({
             Täällä voit osallistua lähetyksemme kulkuun generoimalla koodin, jonka liität osaksi lahjoitustasi. Valittavat kannusteet löydät alta.
 
           </p>
-          <p className="mb-5 ">
+          <p className="mb-5">
             Valitse kannuste ja tämän jälkeen saat mahdollisuuden generoida koodin. Lisää saamasi koodi lahjoituksesi viestikenttään. 
             <br />
             <span className="font-bold">Huom. Viestikenttä aukeaa lahjoituksen maksamisen jälkeen. </span>Lahjoittajan etunimi on se nimi, jonka luemme lähetyksessä. Tähän voit myös laittaa esim. nimimerkkisi. Voit katsoa myös ohjevideon alapuolelta.
@@ -49,7 +49,7 @@ export default function RootLayout({
               height="100%"
               src={ytSrc}
               title="Lahjoitusohje"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allow="encrypted-media; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             />
