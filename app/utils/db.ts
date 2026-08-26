@@ -54,3 +54,9 @@ export const closeIncentive = async (id: string) => {
   const values = [ now, id ];
   await client.query(query, values);
 }
+
+export const getDonationTotal = async () => {
+  const query = 'SELECT sum(amount) as total FROM Donations';
+  const res = await client.query(query);
+  return res.rows[0];
+}
